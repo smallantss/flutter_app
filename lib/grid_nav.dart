@@ -42,7 +42,7 @@ class GridNav extends StatelessWidget {
   _mainItem(BuildContext context, Model model) {
     return GestureDetector(
       onTap: () {
-        //点击跳转
+        //点击跳转33333333333333
         Navigator.of(context).push(MaterialPageRoute());
       },
       child: Stack(

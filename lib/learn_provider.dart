@@ -26,7 +26,7 @@ class Teacher with ChangeNotifier {}
 void main() {
   //1.声明Model类，即被观察者对象（）
   final counter = CounterModel();
-  //2.将Provider包裹Widget,则该Widget可以获取到观察者的数据
+  //2.将Provider包裹Widget,则该Widget可以获取到观察者的数据55555555555555555555
   runApp(Provider<CounterModel>.value(
     value: counter,
     child: ProviderWidget(),

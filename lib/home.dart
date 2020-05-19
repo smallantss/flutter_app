@@ -41,7 +41,7 @@ class HomePage2 extends StatelessWidget {
 }
 
 class BodyWidget extends StatefulWidget {
-  //代表是那种类型  0 首页 1 体系 2 公众号 3 项目 4 我的
+  //代表是那种类型  0 首页 1 体系 2 公众号 3 项目 4 我的444444444444444444444
   final int type;
 
   BodyWidget({Key key, this.type}) : super(key: key);
