@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'pages/home_page.dart';
 
-void main() => runApp(SplashWidget());
+void main() => runApp(ListenSpeakApp());
 
 class MyApp extends StatelessWidget {
   @override

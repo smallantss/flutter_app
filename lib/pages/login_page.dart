@@ -1,9 +1,12 @@
+import 'dart:io';
 import 'dart:ui';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/pages/main_page.dart';
+import 'package:flutter_app/service/repository.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -27,13 +30,49 @@ class _LoginWidgetState extends State<LoginWidget> {
   final pwdController = TextEditingController();
   bool _loading = false;
 
-  void login(BuildContext context) async{
-    await Future.delayed(Duration(seconds: 2));
+  void login(BuildContext context) async {
+    // var dio = Dio(BaseOptions(
+    //   method: 'post',
+    //   connectTimeout: 10000,
+    //   receiveTimeout: 10000,
+    //   baseUrl: 'http://testuser.english-pal.com/',
+    //   queryParameters: <String, dynamic>{
+    //   },
+    //   extra: <String, dynamic>{},
+    //   headers: <String, dynamic>{
+    //     'Content-type': 'application/json;charset=utf-8',
+    //     'device': 'a30184a06914bade',
+    //     'systemId': '39android',
+    //     'token': 'zdqjTeM7rw3iFm88e8ED',
+    //     'encryptCode': '39android_36',
+    //     'terminalType': 'Android',
+    //     'Authorization': 'zdqjTeM7rw3iFm88e8ED'
+    //   },
+    //   responseType: ResponseType.json,
+    // ));
+    // var response = await dio.post<String>('v1/user/auth/login',data: <String, dynamic>{
+    //       'encrypt': '0',
+    //       "mobile": "15165432142",
+    //       "password": "432142"
+    //     });
+    try {
+      Repository.login(phoneController.text, pwdController.text).then((value) {
+        print('then->$value');
+      }).catchError(() {
+        print('onError');
+      }).whenComplete(() {
+        print('whenComplete');
+      });
+    } catch (e) {
+      e.toString();
+    }
+
+    // await Future.delayed(Duration(seconds: 2));
     _loading = false;
     setState(() {
-      Navigator.push(context, MaterialPageRoute(builder: (context){
-        return MainPage();
-      }));
+      // Navigator.push(context, MaterialPageRoute(builder: (context) {
+      //   return MainPage();
+      // }));
     });
   }
 
@@ -74,7 +113,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 DividerLine(),
                 PasswordWidget(controller: pwdController),
                 DividerLine(),
-                LoginButtonWidget(phoneController, pwdController,(){
+                LoginButtonWidget(phoneController, pwdController, () {
                   setState(() {
                     _loading = true;
                     login(context);
@@ -103,10 +142,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                 height: 100,
                 padding: EdgeInsets.all(35),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(8)),
-                  color: Colors.black38
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    color: Colors.black38),
+                child: CircularProgressIndicator(
+                  backgroundColor: Colors.white,
                 ),
-                child: CircularProgressIndicator(backgroundColor: Colors.white,),
               ),
             ),
           )
@@ -222,7 +262,7 @@ class LoginButtonWidget extends StatefulWidget {
   final TextEditingController _pwdController;
   final VoidCallback _login;
 
-  LoginButtonWidget(this._phoneController, this._pwdController,this._login);
+  LoginButtonWidget(this._phoneController, this._pwdController, this._login);
 
   @override
   _LoginButtonWidgetState createState() => _LoginButtonWidgetState();

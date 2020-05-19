@@ -54,6 +54,11 @@ void main() {
 }
 
 class ProviderWidget extends StatelessWidget {
+
+  void fetchData(){
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -98,7 +98,6 @@ class SplashState extends State<SplashWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    print('build');
     _context = context;
     return _getSplashWidget2();
   }
@@ -112,7 +111,7 @@ class SplashState extends State<SplashWidget> with TickerProviderStateMixin {
 //      Navigator.push(
 //          _context, MaterialPageRoute(builder: (context) => LoginPage()));
       Navigator.pushAndRemoveUntil(
-          context,
+          _context,
           FadeRoute(page: LoginPage()),
 //          MaterialPageRoute(builder: (context) => LoginPage()),
           (route) => route == null);
