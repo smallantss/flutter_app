@@ -4,6 +4,9 @@ import 'package:flutter_app/anim/SlideRightRoute.dart';
 import 'package:flutter_app/pages/head_page.dart';
 import 'package:flutter_app/pages/login_page.dart';
 import 'package:flutter_app/pages/main_page.dart';
+import 'package:flutter_app/pages/setting_page.dart';
+
+import 'door_page.dart';
 
 class ListenSpeakApp extends StatelessWidget {
   @override
@@ -17,24 +20,9 @@ class ListenSpeakApp extends StatelessWidget {
         '/login': (context) => LoginPage(),
         '/main': (context) => MainPage(),
         '/head': (context) => HeadPage(),
+        '/door': (context) => DoorPage(),
+        '/setting': (context) => SettingPage(),
       },
-    );
-  }
-}
-
-class SplashPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pushNamed('/login');
-      },
-      child: ConstrainedBox(
-        constraints: BoxConstraints.tight(Size(100, 100)),
-        child: Container(
-          color: Colors.red,
-        ),
-      ),
     );
   }
 }
@@ -112,7 +100,7 @@ class SplashState extends State<SplashWidget> with TickerProviderStateMixin {
 //          _context, MaterialPageRoute(builder: (context) => LoginPage()));
       Navigator.pushAndRemoveUntil(
           _context,
-          FadeRoute(page: LoginPage()),
+          FadeRoute(page: DoorPage()),
 //          MaterialPageRoute(builder: (context) => LoginPage()),
           (route) => route == null);
     } else {

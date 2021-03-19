@@ -1,11 +1,8 @@
-import 'dart:io';
 import 'dart:ui';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/pages/main_page.dart';
 import 'package:flutter_app/service/repository.dart';
 
 class LoginPage extends StatelessWidget {

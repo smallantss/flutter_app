@@ -1,8 +1,5 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'dart:io';
-import 'package:flutter/services.dart';
 import 'pages/home_page.dart';
 void main() {
   runApp(ListenSpeakApp());
@@ -218,7 +215,6 @@ class FormApp extends StatelessWidget {
 }
 
 class MyCustomForm extends StatefulWidget {
-  _getState() {}
 
   @override
   _MyCustomFormState createState() => _MyCustomFormState();

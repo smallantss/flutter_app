@@ -8,7 +8,6 @@ void main() => runApp(ListenSpeakApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //ccccccccccccccccccccc
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -80,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Text(
                 '$_counter',
-                style: Theme.of(context).textTheme.display1,
+                style: Theme.of(context).textTheme.headline4,
               ),
             ],
           ),
