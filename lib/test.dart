@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 class Bicycle {
@@ -187,6 +188,7 @@ class FireMan extends Person with Musical {
     1: 'a',
     true: 'w',
   };
+
   FireMan(name) : super(name);
 
   void doSomething() {
@@ -203,12 +205,27 @@ class FireMan extends Person with Musical {
   lookUpVersion() async {}
 }
 
-void main() async {
-  method2();
+void main() {
+//1.创建一个int类型StreamController对象
+  StreamController<int> streamController = StreamController(
+      onListen: () => print('listen'),
+      onCancel: () => print('cancel'),
+      onPause: () => print('pause'),
+      onResume: () => print('resumr'));
+  //2.通过sink槽口添加int类型事件数据
+  streamController.sink.add(100);
+  streamController.sink.add(200);
+  streamController.sink.add(300);
+  streamController.sink.add(400);
+  streamController.sink.add(500);
+  streamController.sink.close(); //只有手动调用close方法发送一个done事件，onDone才会被回调
+  //3.注册监听
+  streamController.stream.listen((event) => print(event), onDone: () => print('is done'));
+  streamController.stream.listen((event) => print(event), onDone: () => print('is done')); //不允许两次监听
 }
 
-methodA(){
-  print('A');
+methodA() {
+  return 1;
 }
 
 methodB() async {
@@ -220,21 +237,22 @@ methodB() async {
 methodC(String from) async {
   print('C start from $from');
 
-  Future((){                // <== 该代码将在未来的某个时间段执行
+  Future(() {
+    // <== 该代码将在未来的某个时间段执行
     print('C running Future from $from');
-  }).then((_){
+  }).then((_) {
     print('C end of Future from $from');
   });
 
   print('C end from $from');
 }
 
-methodD(){
+methodD() {
   print('D');
 }
 
-void method1() async{
-  List<String> myArray = <String>['a','b','c'];
+void method1() async {
+  List<String> myArray = <String>['a', 'b', 'c'];
   print('before loop');
   myArray.forEach((String value) async {
     await delayedPrint(value);
@@ -248,9 +266,9 @@ methodTest() async {
 }
 
 void method2() async {
-  List<String> myArray = <String>['a','b','c'];
+  List<String> myArray = <String>['a', 'b', 'c'];
   print('before loop');
-  for(int i=0; i<myArray.length; i++) {
+  for (int i = 0; i < myArray.length; i++) {
     await delayedPrint(myArray[i]);
   }
   print('end of loop');
