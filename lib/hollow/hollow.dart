@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/hollow/pages/game_page.dart';
 import 'package:flutter_app/hollow/pages/home_page.dart';
 
 void main() => runApp(HollowApp());
@@ -10,7 +11,7 @@ class HollowApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
-        '/': (context) => HomePage(),
+        '/': (context) => GamePage(),
       },
     );
   }
